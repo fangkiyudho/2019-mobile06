@@ -3,21 +3,28 @@ package id.ac.polinema.idealbodyweight;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import id.ac.polinema.idealbodyweight.fragments.AboutFragment;
+import id.ac.polinema.idealbodyweight.fragments.MenuFragment;
 
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MenuFragment.OnFragmentInteractionListener {
 
 	// Deklarasikan atribut Fragment di sini
 	private AboutFragment aboutFragment;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		aboutFragment = AboutFragment.newInstance("Fangki Yudhodiharjo");
+		MenuFragment menuFragment = new MenuFragment();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, menuFragment)
+				.commit();
+
 	}
 
 	@Override
@@ -39,11 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
-	public AboutFragment getAboutFragment() {
-		return aboutFragment;
+
+	@Override
+	public void onBrocaIndexButtonClicked() {
+
 	}
 
-	public void setAboutFragment(AboutFragment aboutFragment) {
-		this.aboutFragment = aboutFragment;
+	@Override
+	public void onBodyMassIndexButtonClicked() {
+
 	}
 }
